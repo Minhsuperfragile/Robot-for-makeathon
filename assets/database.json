@@ -1,0 +1,83 @@
+{
+  "dtbs": {
+    "humanResource": {
+      "Nguyen Ngoc Nhy": {
+        "position": "design lead",
+        "timeUsage": {
+          "lastMonth": {
+            "desginAdvertisement": 20,
+            "designUI": 40,
+            "editVideo": 40
+          },
+          "lastWeek": {
+            "designUI": 30,
+            "editVideo": 70
+          },
+          "yesterday": {
+            "editVideo": 100
+          }
+        },
+        "toDoList": {
+          "designUI": {
+            "description": "Design an UI for our application",
+            "timeSubmit": "today"
+          },
+          "editVideo": {
+            "description": "Make a video to present our product to partner",
+            "timeSubmit": "10th January"
+          }
+        }
+      },
+      "Nguyen Trong Minh": {
+        "position": "tech lead",
+        "timeUsage": {
+          "lastMonth": {
+            "buildFirmware": 45,
+            "createSoftware": 30,
+            "meetPartner": 10,
+            "readArticle": 15
+          },
+          "lastWeek": {
+            "buildFirmware": 60,
+            "createSoftware": 30,
+            "readArticle": 10
+          },
+          "yesterday": {
+            "createSoftware": 100
+          }
+        },
+        "toDoList": {
+          "createSoftware": {
+            "description": "create an UI provide information about customer (check mail for more detail), create database for our web",
+            "submitTime": "17h today"
+          }
+        }
+      },
+      "Ryukai Korosaki": {
+        "position": "intern programmer",
+        "timeUsage": {
+          "lastMonth": {
+            "dataCleaning": 45,
+            "dataScraping": 10,
+            "learnJS": 30,
+            "practiceWebDev": 15
+          },
+          "lastWeek": {
+            "dataCleaning": 50,
+            "learnJS": 20,
+            "practiceWebDev": 30
+          },
+          "yesterday": {
+            "practiceWebDev": 100
+          }
+        },
+        "toDoList": {
+          "learnC": {
+            "description": "Know how to use C for low level code use in firmware, at last being able to complete a project given by mentor",
+            "submitTime": "1st February "
+          }
+        }
+      }
+    }
+  }
+}
