@@ -25,8 +25,13 @@ initialQrCode = pygame.transform.scale(initialQrCode,(700,700))
 otherProjectScreen = pygame.image.load('assets/otherProjectScreen.jpg').convert()
 # otherPSRect = otherProjectScreen.get_rect(topleft=(0,0))
 background = pygame.image.load('assets/logarith.jpg').convert()
+cuteFace = pygame.image.load('assets/cuteFace.jpg').convert()
+cuteFace = pygame.transform.scale(cuteFace,(width,heigh))
+staffScreen1 = pygame.image.load('assets/staff1.jpg').convert()
+staffScreen2 = pygame.image.load('assets/staff2.jpg').convert()
+staffScreen3 = pygame.image.load('assets/staff3.jpg').convert()
 
-stateList = ['initialScreen','introVideo','otherProjectScreen']
+stateList = ['initialScreen','introVideo','otherProjectScreen','cuteFace','staffScreen1','staffScreen2','staffScreen3']
 counter = 0
 
 def displayWebStatus(status):
@@ -49,6 +54,7 @@ def turnLeft():
 
 def stop():
     print('Ikuuuuu')
+
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -75,13 +81,34 @@ while run:
                 if counter < 0:
                     counter = len(stateList) - 1
                 active = stateList[counter]
+            # cute face screen (press C)
+            if event.key == pygame.K_c:
+                counter = 3
+                active = stateList[counter]
+            # staff screen (press Z)
+            if event.key == pygame.K_z:
+                counter = 4
+                active = stateList[counter]
+            if event.key == pygame.K_a:
+                counter = 5
+                active = stateList[counter]
+            if event.key == pygame.K_q:
+                counter = 6
+                active = stateList[counter]
+            # open intro video (press V)
+            if event.key == pygame.K_v:
+                counter = 1
+                active = stateList[counter]
+
             if event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 exit()
+
 #       define that if you are no longer hold movement key, robot will stop
         if event.type == pygame.KEYUP:
             if event.key in [pygame.K_UP,pygame.K_DOWN,pygame.K_LEFT,pygame.K_RIGHT]:
                 stop()
+
 #   which screen is displayed   
     if active == 'initialScreen':
         screen.blit(initialScreen,(0,0))
@@ -94,7 +121,14 @@ while run:
         call(['python','introVideo.py'])
         counter += 1
         active = stateList[counter]
-    
+    elif active == 'cuteFace':
+        screen.blit(cuteFace,(0,0))
+    elif active == 'staffScreen1':
+        screen.blit(staffScreen1,(0,0))
+    elif active == 'staffScreen2':
+        screen.blit(staffScreen2,(0,0))
+    elif active == 'staffScreen3':
+        screen.blit(staffScreen3,(0,0))
     pygame.display.update()
 #   set fps
     clock.tick(60)
