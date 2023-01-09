@@ -1,10 +1,9 @@
 import pygame
-import requests
-from subprocess import call
+import subprocess
 
 # define some constant
-width = 1920
-heigh = 1080
+width = 1440
+heigh = 720
 url = 'https://www.facebook.com/'
 active = 'initialScreen'
 run = True
@@ -18,9 +17,9 @@ mainFont = pygame.font.Font('font/Pixeltype.ttf',50)
 
 # Locate source file for app
 initialScreen = pygame.image.load('assets/background.jpg').convert()
-# initialScreen = pygame.transform.scale(initialScreen, (1440,720)) #scale the image
+initialScreen = pygame.transform.scale(initialScreen, (width,heigh)) #scale the image
 initialQrCode = pygame.image.load('assets/initialQrCode.png').convert_alpha()
-initialQrCode = pygame.transform.scale(initialQrCode,(700,700))
+initialQrCode = pygame.transform.scale(initialQrCode,(500,500))
 
 otherProjectScreen = pygame.image.load('assets/otherProjectScreen.jpg').convert()
 # otherPSRect = otherProjectScreen.get_rect(topleft=(0,0))
@@ -33,6 +32,7 @@ staffScreen3 = pygame.image.load('assets/staff3.jpg').convert()
 
 stateList = ['initialScreen','introVideo','otherProjectScreen','cuteFace','staffScreen1','staffScreen2','staffScreen3']
 counter = 0
+move = False
 
 def displayWebStatus(status):
     statusSurface = mainFont.render(str(status), False, (64,64,64))
@@ -41,19 +41,19 @@ def displayWebStatus(status):
 
 # movement functions for robot that will be added in future
 def moveForward():
-    print('motherfuck you are moving forward')
+    movement = 'Forward'
 
 def moveBackward():
-    print("sike, I'm moving backward now")
+    movement = 'Backward'
 
 def turnRight():
-    print("only me or that guy is turning right?")
+    movement = 'Right'
 
 def turnLeft():
-    print('your dad has been left for 10 years')
+    movement = 'Left'
 
 def stop():
-    print('Ikuuuuu')
+    movement = 'Stop'
 
 while run:
     for event in pygame.event.get():
@@ -64,12 +64,16 @@ while run:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 moveForward()
+                move = True
             if event.key == pygame.K_DOWN:
                 moveBackward()
+                move = True
             if event.key == pygame.K_LEFT:
                 turnLeft()
+                move = True
             if event.key == pygame.K_RIGHT:
                 turnRight()
+                move = True
 #           define key stroke for screen change
             if event.key == pygame.K_w:
                 counter += 1
@@ -85,7 +89,7 @@ while run:
             if event.key == pygame.K_c:
                 counter = 3
                 active = stateList[counter]
-            # staff screen (press Z)
+            # staff screen (press Z,Q,A)
             if event.key == pygame.K_z:
                 counter = 4
                 active = stateList[counter]
@@ -107,6 +111,7 @@ while run:
 #       define that if you are no longer hold movement key, robot will stop
         if event.type == pygame.KEYUP:
             if event.key in [pygame.K_UP,pygame.K_DOWN,pygame.K_LEFT,pygame.K_RIGHT]:
+                move = False
                 stop()
 
 #   which screen is displayed   
@@ -129,6 +134,8 @@ while run:
         screen.blit(staffScreen2,(0,0))
     elif active == 'staffScreen3':
         screen.blit(staffScreen3,(0,0))
+    if move:
+        displayWebStatus(movement)
     pygame.display.update()
 #   set fps
     clock.tick(60)
